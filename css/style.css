@@ -1,0 +1,23 @@
+html, body, .container, .row {
+  height: 100%;
+}
+
+.suggestion-box {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-60%);
+  background-color: #eee;
+  padding: 40px;
+}
+
+.suggestion {
+  font-size: 40px;
+  background-color: #ddd;
+  padding: 20px;
+  margin: 20px;
+}
+
+.options {
+  margin-top: 10px;
+}
