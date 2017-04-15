@@ -4,9 +4,11 @@ html, body, .container, .row {
 
 .suggestion-box {
   text-align: center;
+  /*
   position: relative;
   top: 50%;
   transform: perspective(1px) translateY(-60%);
+  */
   background-color: #eee;
   padding: 40px;
 }
