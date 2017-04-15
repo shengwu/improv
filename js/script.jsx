@@ -1,45 +1,46 @@
-function getRandomElement(arr) {
+function randomElement(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function randomElementFromEither(arr1, arr2) {
+  var n = Math.floor(Math.random() * (arr1.length + arr2.length));
+  if (n >= arr1.length) {
+    return arr2[n - arr1.length];
+  }
+  return arr1[n];
 }
 
 class SuggestionGenerator extends React.Component {
   constructor() {
     super();
-    this.state = {suggestion: this.generateNewSuggestion()};
+    this.state = {suggestion: this.generateSingleWordSuggestion()};
     // Really, ES6?
-    this.setNewSuggestion = this.setNewSuggestion.bind(this);
+    this.setSingleWordSuggestion = this.setSingleWordSuggestion.bind(this);
+    this.setAdjectiveAndNounSuggestion = this.setAdjectiveAndNounSuggestion.bind(this);
   }
-  setNewSuggestion() {
-    this.setState({suggestion: this.generateNewSuggestion()});
+
+  setSingleWordSuggestion() {
+    this.setState({suggestion: this.generateSingleWordSuggestion()});
   }
-  generateNewSuggestion() {
-    var adjective = getRandomElement(WORDS['adjectives']);
-    var noun = getRandomElement(WORDS['nouns']);
+  setAdjectiveAndNounSuggestion() {
+    this.setState({suggestion: this.generateAdjectiveAndNounSuggestion()});
+  }
+  generateSingleWordSuggestion() {
+    return randomElementFromEither(WORDS['adjectives'], WORDS['nouns']);
+  }
+  generateAdjectiveAndNounSuggestion() {
+    var adjective = randomElement(WORDS['adjectives']);
+    var noun = randomElement(WORDS['nouns']);
     return adjective + ' ' + noun;
   }
+
   render() {
     return (
       <div className="suggestion-box">
         <h2>Improv suggestion generator</h2>
         <div className="suggestion">{ this.state.suggestion }</div>
-        <button className="btn btn-primary adjective-verb" onClick={this.setNewSuggestion}>GENERATE</button>
-        <div className="options">
-          <button className="btn adjective-verb">Adjective-Noun</button>
-          <div className="btn-group" data-toggle="buttons">
-            <label className="btn">
-              <input type="checkbox" autocomplete="off"></input>
-              Adjective-Noun
-            </label>
-            <label className="btn">
-              <input type="checkbox" autocomplete="off"></input>
-              Option 2
-            </label>
-            <label className="btn">
-              <input type="checkbox" autocomplete="off"></input>
-              Option 3
-            </label>
-          </div>
-        </div>
+        <button className="btn btn-primary" onClick={ this.setSingleWordSuggestion }>SINGLE WORD</button>
+        <button className="btn btn-info" onClick={ this.setAdjectiveAndNounSuggestion }>ADJECTIVE + NOUN</button>
       </div>
     );
   }
