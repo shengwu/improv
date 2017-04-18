@@ -37,9 +37,9 @@ class SuggestionGenerator extends React.Component {
   render() {
     return (
       <div className="suggestion-box">
+        <div className="suggestion">{ this.state.suggestion }</div>
         <button className="btn btn-primary" onClick={ this.setSingleWordSuggestion }>SINGLE WORD</button>
         <button className="btn btn-info" onClick={ this.setAdjectiveAndNounSuggestion }>ADJECTIVE + NOUN</button>
-        <div className="suggestion">{ this.state.suggestion }</div>
       </div>
     );
   }
