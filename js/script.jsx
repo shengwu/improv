@@ -37,10 +37,9 @@ class SuggestionGenerator extends React.Component {
   render() {
     return (
       <div className="suggestion-box">
-        <h2>Improv suggestion generator</h2>
-        <div className="suggestion">{ this.state.suggestion }</div>
         <button className="btn btn-primary" onClick={ this.setSingleWordSuggestion }>SINGLE WORD</button>
         <button className="btn btn-info" onClick={ this.setAdjectiveAndNounSuggestion }>ADJECTIVE + NOUN</button>
+        <div className="suggestion">{ this.state.suggestion }</div>
       </div>
     );
   }
